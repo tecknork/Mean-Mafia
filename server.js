@@ -5,7 +5,6 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var todos = require('./routes/todos');
-var socketer = require('./routes/socketer');
 
 var app = express();
 
@@ -23,7 +22,6 @@ app.use(bodyParser.urlencoded( { extended:false }));
 
 app.use('/',index);
 app.use('/api/v1/',todos);
-app.use('/sockets/',socketer);
 
 app.listen(3000,function(){
         console.log('server started on port 3000');

@@ -4,6 +4,10 @@
   "description": "first sample project",
   "main": "server.js",
   "scripts": {
+    "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
+    "lint": "tslint ./app/**/*.ts -t verbose",
+    "lite": "lite-server",
+  
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,6 +21,9 @@
   },
   "homepage": "https://github.com/tecknork/MeanSample#readme",
   "dependencies": {
+    "concurrently": "^3.1.0",
+    "lite-server": "^2.2.2",
+    "typescript": "~2.0.10",
     "body-parser": "^1.15.2",
     "ejs": "^2.5.5",
     "express": "^4.14.0",
