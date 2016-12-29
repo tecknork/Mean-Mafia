@@ -6,8 +6,9 @@ var Todo = require('../models/todo');
 
 
 router.get('/todos',function(req,res,next){
-
-    res.send('TODOS API ');
+     res.io.emit("socketToMe", "users");
+      res.send('respond with a resource.');
+    //res.send('TODOS API ');
 
 });
 
@@ -15,7 +16,7 @@ router.get('/todos',function(req,res,next){
 router.post('/addtodo',function(req,res,next){
         console.log(req);
         console.log(req.body.title);
-
+        
         var newTodo = Todo({
         title: req.body.title,
         completed: false
