@@ -7,6 +7,9 @@ var Todo = require('../models/todo');
 
 router.get('/todos',function(req,res,next){
      res.io.emit("socketToMe", "users");
+
+    res.io.emit('message',{type:'new-message',text:"Works"});
+
       res.send('respond with a resource.');
     //res.send('TODOS API ');
 

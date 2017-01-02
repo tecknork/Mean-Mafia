@@ -10,9 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var chat_service_1 = require('../../services/chat.service');
+var router_1 = require('@angular/router');
+//To-Do - Get Parameters from Router 
 var ChatComponent = (function () {
-    function ChatComponent(_chatService) {
+    function ChatComponent(_chatService, route, router) {
         this._chatService = _chatService;
+        this.route = route;
+        this.router = router;
         this.messages = [];
     }
     ChatComponent.prototype.sendMessage = function () {
@@ -36,7 +40,7 @@ var ChatComponent = (function () {
             selector: 'chat',
             templateUrl: 'chat.component.html'
         }), 
-        __metadata('design:paramtypes', [chat_service_1.ChatService])
+        __metadata('design:paramtypes', [chat_service_1.ChatService, router_1.ActivatedRoute, router_1.Router])
     ], ChatComponent);
     return ChatComponent;
 }());

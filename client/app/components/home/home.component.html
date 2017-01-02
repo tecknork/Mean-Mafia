@@ -1,0 +1,10 @@
+
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" #myFrom>
+<input type="text" formControlName="username" placeholder="Enter Username .... " id="username" name="name">
+
+<input type="text" formControlName="serverName" placeholder="Enter ServerName .... " id="serverName" name="servername">
+
+
+ <button type="submit" [disabled]="!myForm.valid">Submit</button>
+
+</form>

@@ -1,5 +1,7 @@
 import { Component,OnInit,OnDestroy } from '@angular/core';
 import {ChatService} from '../../services/chat.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+//To-Do - Get Parameters from Router 
 
 @Component({
 moduleId: module.id,
@@ -11,7 +13,8 @@ export class ChatComponent  implements OnInit,OnDestroy{
     message : string;
     connection:any;
 
-    constructor(private _chatService:ChatService){
+    constructor(private _chatService:ChatService,private route: ActivatedRoute,
+    private router: Router){
 
     }
 
@@ -27,6 +30,7 @@ sendMessage(){
         console.log(message);
         this.messages.push(message);
     });
+
     }
 
     ngOnDestroy(){
