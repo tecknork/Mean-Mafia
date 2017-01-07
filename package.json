@@ -4,7 +4,6 @@
   "description": "first sample project",
   "main": "server.js",
   "scripts": {
-   
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,8 +21,12 @@
     "ejs": "^2.5.5",
     "express": "^4.14.0",
     "mongojs": "^2.4.0",
-    "mongoose" :"*",
-    "connect-flash":"*",
-    "socket-io":"*"
+    "mongoose": "*",
+    "connect-flash": "*",
+    "socket-io": "*"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
   }
 }
