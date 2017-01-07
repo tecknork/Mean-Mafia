@@ -1,6 +1,33 @@
+
+<!--<div class='background'>
+ <div class='row top-header'>
+     <div class='col-md-1'>
+    </div>
+     <div class='col-md-4'>
+         <h1> Mafia</h1>
+     </div>
+ </div> 
+
+ <div class="chat">
+    <div class="row">
+        <div class="col-md-10 message-box">
+        </div>
+        <div class="col-md-2 contact-box">
+        </div>
+    </div>     
+ </div>-->
+
+
 <input type="text" placeholder="Enter Message .... " [(ngModel)]="message" name="message" (keyup.enter)="sendMessage()">
 <br>
 
 <div *ngFor="let message of messages">
     {{message.text}}
 </div>
+
+
+<div>
+
+
+
+

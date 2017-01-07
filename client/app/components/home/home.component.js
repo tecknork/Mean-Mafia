@@ -11,8 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
 var router_1 = require('@angular/router');
+var chat_service_1 = require('../../services/chat.service');
 var HomeComponent = (function () {
-    function HomeComponent(_formbuilder, route, router) {
+    function HomeComponent(_chatService, _formbuilder, route, router) {
+        this._chatService = _chatService;
         this._formbuilder = _formbuilder;
         this.route = route;
         this.router = router;
@@ -27,6 +29,7 @@ var HomeComponent = (function () {
     HomeComponent.prototype.onSubmit = function () {
         this.username = this.myForm.value['username'];
         this.serverName = this.myForm.value['serverName'];
+        this._chatService.setUsername(this.username);
         console.log("username " + this.username);
         console.log("serverName " + this.serverName);
         this.router.navigate(['/chat', this.serverName]);
@@ -37,7 +40,7 @@ var HomeComponent = (function () {
             selector: 'home',
             templateUrl: 'home.component.html'
         }), 
-        __metadata('design:paramtypes', [forms_1.FormBuilder, router_1.ActivatedRoute, router_1.Router])
+        __metadata('design:paramtypes', [chat_service_1.ChatService, forms_1.FormBuilder, router_1.ActivatedRoute, router_1.Router])
     ], HomeComponent);
     return HomeComponent;
 }());

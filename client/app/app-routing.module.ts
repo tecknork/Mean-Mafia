@@ -4,7 +4,7 @@ import {ChatComponent } from './components/chat/chat.component';
 import {HomeComponent} from './components/home/home.component';
 
 const appRoutes: Routes = [
-  { path: 'chat/', component: ChatComponent },
+  { path: 'chat/:servername', component: ChatComponent },
     { path: 'home', component: HomeComponent },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
 ];

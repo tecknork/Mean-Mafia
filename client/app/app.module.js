@@ -17,6 +17,7 @@ var chat_component_1 = require('./components/chat/chat.component');
 var home_component_1 = require('./components/home/home.component');
 var app_routing_module_1 = require('./app-routing.module');
 var common_1 = require('@angular/common');
+var http_1 = require('@angular/http');
 // const appRoutes: Routes = [
 //   { path: 'chat', component: ChatComponent ,}
 //   // { path: '**', component: PageNotFoundComponent }
@@ -26,7 +27,7 @@ var AppModule = (function () {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, forms_2.ReactiveFormsModule, app_routing_module_1.AppRoutingModule],
+            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, forms_2.ReactiveFormsModule, app_routing_module_1.AppRoutingModule, http_1.HttpModule],
             declarations: [app_component_1.AppComponent, chat_component_1.ChatComponent, home_component_1.HomeComponent],
             bootstrap: [app_component_1.AppComponent],
             providers: [{ provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy }]

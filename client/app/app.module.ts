@@ -7,6 +7,7 @@ import {ChatComponent } from './components/chat/chat.component';
 import {HomeComponent} from './components/home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import {HttpModule} from '@angular/http';
 
 // const appRoutes: Routes = [
 //   { path: 'chat', component: ChatComponent ,}
@@ -15,7 +16,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 @NgModule({
-  imports:      [ BrowserModule ,FormsModule,ReactiveFormsModule,AppRoutingModule],
+  imports:      [ BrowserModule ,FormsModule,ReactiveFormsModule,AppRoutingModule,HttpModule],
   declarations: [ AppComponent,ChatComponent,HomeComponent ],
   bootstrap:    [ AppComponent ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}]

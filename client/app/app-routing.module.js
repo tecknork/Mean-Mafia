@@ -13,7 +13,7 @@ var router_1 = require('@angular/router');
 var chat_component_1 = require('./components/chat/chat.component');
 var home_component_1 = require('./components/home/home.component');
 var appRoutes = [
-    { path: 'chat/', component: chat_component_1.ChatComponent },
+    { path: 'chat/:servername', component: chat_component_1.ChatComponent },
     { path: 'home', component: home_component_1.HomeComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];

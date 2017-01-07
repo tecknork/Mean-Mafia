@@ -21,15 +21,23 @@ var ChatComponent = (function () {
     }
     ChatComponent.prototype.sendMessage = function () {
         console.log(this.message);
+        console.log('servername:' + this.serverName);
         this._chatService.sendMessage(this.message);
         this.message = '';
     };
     ChatComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.username = this._chatService.getUsername();
         this.connection = this._chatService.getMessage().subscribe(function (message) {
             console.log(message);
             _this.messages.push(message);
         });
+        this.route.params.subscribe(function (param) {
+            _this.serverName = param['servername'];
+            _this._chatService.setServername(_this.serverName);
+            //  console.log(this.serverName);
+        });
+        console.log(this.username);
     };
     ChatComponent.prototype.ngOnDestroy = function () {
         this.connection.unsubscribe();

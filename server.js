@@ -5,6 +5,8 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var todos = require('./routes/todos');
+var chat = require('./routes/chat');
+
 //var sockets= require('./routes/socketer');
 var app = express();
 
@@ -24,8 +26,18 @@ io.on('connection', (socket)=> {
             console.log('User disconnect');
     });
 
-    socket.on('add-message',(message)=>{
-        io.emit('message',{type:'new-message',text:message});
+    socket.on('join',(data)=>{
+            console.log('joined' + data);
+        socket.join(data);
+    });
+    socket.on('add-message',(data)=>{
+        console.log('Data recieved: ' + data.server);
+    //    var room = io.sockets.adapter.rooms[data.server];
+      //  console.log("Room Count "  + room.length);
+       // io.of(data.server).emit('message',{type:'new-message',text:data.msg});
+         //io.emit('message',{type:'new-message',text:data.msg});
+        // socket.in(data.server).emit('message',{type:'new-message',text:data.msg});
+        io.in(data.server).emit('message',{type:'new-message',text:data.msg});
     });
 });
 
@@ -50,6 +62,8 @@ app.use(bodyParser.urlencoded( { extended:false }));
 
 app.use('/',index);
 app.use('/api/v1/',todos);
+app.use('/chats/',chat);
+
 //app.use('/socket/',sockets);
 
 // app.listen(3000,function(){
