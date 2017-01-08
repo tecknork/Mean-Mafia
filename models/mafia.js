@@ -28,8 +28,8 @@ var Message = mongoose.Schema({
 var MafiaSchema = mongoose.Schema({
 
         server: String,
-        serverId: Schema.ObjectId,
-        userlist:[Users],
+        serverId: mongoose.Schema.ObjectId,
+        userList:[Users],
         messageList:[Message]
 
 });
@@ -39,11 +39,15 @@ var Mafia = module.exports = mongoose.model('Mafia',MafiaSchema);
 
 
 function findServer(servername,callback){
-
+  
     Mafia.findOne({server: servername},function (err, mafia){
+                
+                console.log(err);
                 if(err)   
                     throw err;
-                if(mafia.length){
+                console.log(mafia)
+                if(mafia!=null)
+                {
                     callback(mafia)
                 }
                 else{
@@ -55,7 +59,6 @@ function findServer(servername,callback){
 
 
 module.exports.addUserToServer = function(serverName,user,callback){
-
             findServer(serverName,function(server){
                 if(server){
                     server.userList.push(user);
@@ -63,8 +66,8 @@ module.exports.addUserToServer = function(serverName,user,callback){
                 }
                 else{
                 var newServer = new Mafia({
-                        server: servername,
-                        userlist: [user]
+                        server: serverName,
+                        userList: [user]
                 });
                 newServer.save(callback);
                 }
