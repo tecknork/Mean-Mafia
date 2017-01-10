@@ -1,2 +1,2 @@
-# MeanSample
-first mean stack sample project 
+# Mean-Mafia
+first mean stack project 
