@@ -1,12 +1,12 @@
 var mongoose = require('mongoose');
+//mongoose.createConnection('mongodb://localhost/mafias');
 mongoose.connect('mongodb://localhost/mafias');
-
 var db = mongoose.connection;
 
 
 var Users = mongoose.Schema({
-    username   : String,
-    userId   : String,
+    username   : String,  //username
+    userId   : String,   //socketId
     group : {
         type:String , enums:['admin','mafias','villager','medic','police','all'], default:'all'
     },
@@ -14,7 +14,7 @@ var Users = mongoose.Schema({
 });
 
 var Message = mongoose.Schema({
-    userId: String,
+    userId: String,  //socketId
     group : {
         type:String , enums:['admin','mafias','villager','medic','police','all'], default:'all'
     },
@@ -42,10 +42,10 @@ function findServer(servername,callback){
   
     Mafia.findOne({server: servername},function (err, mafia){
                 
-                console.log(err);
+             //   console.log(err);
                 if(err)   
                     throw err;
-                console.log(mafia)
+               // console.log(mafia)
                 if(mafia!=null)
                 {
                     callback(mafia)
@@ -72,11 +72,11 @@ module.exports.addUserToServer = function(serverName,user,callback){
                 newServer.save(callback);
                 }
                     
-            })
+            });
 }
 
 module.exports.addMessage = function(serverName,message,callback){
-
+            
             findServer(serverName,function(server){
                 if(server){
                     server.messageList.push(message);

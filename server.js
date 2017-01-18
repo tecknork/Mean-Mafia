@@ -1,6 +1,8 @@
 var express = require('express');
 var path  = require('path');
 var bodyParser = require('body-parser');
+var util = require('util');
+var expressValidator = require('express-validator');
 
 
 var index = require('./routes/index');
@@ -21,10 +23,15 @@ var io = require('socket.io')(server);
 
 io.on('connection', (socket)=> {
     console.log('User Connected......' );
-
+    console.log("Socket ID On server "+ socket.client.id);
+    socket.emit('clientId',socket.id);
     socket.on('disconnect',()=>{
             console.log('User disconnect');
     });
+     socket.on('connect',()=>{
+            console.log('connected');
+    });
+    
 
     socket.on('join',(data)=>{
             console.log('joined' + data);
@@ -58,6 +65,7 @@ app.use(express.static(path.join(__dirname,'client')));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded( { extended:false }));
+app.use(expressValidator());
 
 
 app.use('/',index);
@@ -74,3 +82,4 @@ server.listen(3000),function(){
         console.log('server started on port 3300');
 };
 
+module.exports= server;

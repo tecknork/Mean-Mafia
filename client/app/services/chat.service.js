@@ -16,10 +16,18 @@ require('rxjs/add/operator/map');
 var ChatService = (function () {
     function ChatService(_http) {
         this._http = _http;
+        // this.socket = io(this.url);
         this.socket = io(this.url);
+        this.socket.on('connect', function () {
+            console.log("socketId" + this.socket);
+        });
+        this.getSokcetID().subscribe(function (id) {
+            console.log(id);
+            // this.messages.push(message);
+        });
     }
     ChatService.prototype.setUsername = function (name) {
-        this.username = name;
+        // this.username= name;
     };
     ChatService.prototype.getUsername = function () {
         return this.username;
@@ -27,7 +35,7 @@ var ChatService = (function () {
     ChatService.prototype.setServername = function (server) {
         this.servername = server;
         console.log('starts join ' + this.servername);
-        // this.joinroom(this.servername);    
+        // this.joinroom(this.servername); 
         this.joinroom(this.servername);
         // result.subscribe(x => {
         //         console.log(x);
@@ -39,10 +47,24 @@ var ChatService = (function () {
     ChatService.prototype.sendMessage = function (message) {
         this.socket.emit('add-message', { msg: message, server: this.servername });
     };
+    ChatService.prototype.getSokcetID = function () {
+        var _this = this;
+        var observable = new Observable_1.Observable(function (observer) {
+            // console.log(this.socket.socket.id);
+            _this.socket.on('clientId', function (data) {
+                //  console.log(data); // 'G5p5...'
+                observer.next(data);
+            });
+            return function () {
+                //this.socket.disconnect();
+            };
+        });
+        return observable;
+    };
     ChatService.prototype.getMessage = function () {
         var _this = this;
         var observable = new Observable_1.Observable(function (observer) {
-            _this.socket = io(_this.url);
+            // console.log(this.socket.socket.id);
             _this.socket.on('message', function (data) {
                 observer.next(data);
             });

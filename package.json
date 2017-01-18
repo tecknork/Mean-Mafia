@@ -4,8 +4,8 @@
   "description": "first sample project",
   "main": "server.js",
   "scripts": {
-     "test": "mocha && mocha test",
-    "coverage" : "istanbul cover _mocha -- -R spec test/**/*"
+    "test": "mocha && mocha test",
+    "coverage": "istanbul cover -x 'test/mocha' _mocha -- -R spec test/**/* "
   },
   "repository": {
     "type": "git",
@@ -19,11 +19,12 @@
   "homepage": "https://github.com/tecknork/MeanSample#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "connect-flash": "*",
     "ejs": "^2.5.5",
     "express": "^4.14.0",
+    "express-validator": "^3.1.2",
     "mongojs": "^2.4.0",
     "mongoose": "*",
-    "connect-flash": "*",
     "socket-io": "*"
   },
   "devDependencies": {
