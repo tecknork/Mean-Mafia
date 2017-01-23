@@ -1,6 +1,6 @@
 var chai = require('chai');
 var expect = chai.expect;
-
+var assert = chai.assert;
 var Mafia = require("../models/mafia");
 
 describe('MongoTest', function () {
@@ -75,5 +75,50 @@ describe('MongoTest', function () {
             done();
         });
     });
+
+    it('Get Messages From Server Fail', function (done) {
+        var servername = "server5";
+            Mafia.getMessages(servername, function (messages) {
+                  //  console.log("message:+" + messages);
+                expect(messages).to.be.null;
+                        done();
+              
+            })
+        
+    });
+
+    it('Get Messages From Server Fail Null', function (done) {
+        var servername = null;
+        
+            Mafia.getMessages(servername, function (messages) {
+                console.log("message:+" + messages);
+                expect(messages).to.be.null;
+                done();
+            });
+        
+        
+    });
+
+
+    it('Add Message To Server Fail', function (done) {
+        var servername = "server123";
+        var user = {
+            username: "Hamza",
+            userId: "useridasdas123",
+            connected: true
+        }
+        var message = {
+            userId: user.userId,
+            message: 'test message'
+        }
+        Mafia.addMessage(servername, message, function (err, server) {
+           // expect(server).to.be.null;
+            expect(err).to.not.be.null;
+            expect(err).to.deep.equal(new Error('server not found'));
+            done();
+        });
+    });
+
+
 
 });

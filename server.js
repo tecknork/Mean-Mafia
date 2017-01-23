@@ -69,7 +69,7 @@ app.use(expressValidator());
 
 
 app.use('/',index);
-app.use('/api/v1/',todos);
+//app.use('/api/v1/',todos);
 app.use('/chats/',chat);
 
 //app.use('/socket/',sockets);

@@ -1,7 +1,8 @@
+"use strict";
 var mongoose = require('mongoose');
 //mongoose.createConnection('mongodb://localhost/mafias');
 mongoose.connect('mongodb://localhost/mafias');
-var db = mongoose.connection;
+var db=mongoose.connection;
 
 
 var Users = mongoose.Schema({
@@ -19,7 +20,7 @@ var Message = mongoose.Schema({
         type:String , enums:['admin','mafias','villager','medic','police','all'], default:'all'
     },
     message :String,
-    created_at :{
+    createdAt :{
         type:Date,
         default : Date.now
     }
@@ -43,17 +44,19 @@ function findServer(servername,callback){
     Mafia.findOne({server: servername},function (err, mafia){
                 
              //   console.log(err);
-                if(err)   
-                    throw err;
+                if(err){
+                    throw err;  
+                }   
+                    
                // console.log(mafia)
-                if(mafia!=null)
+                if(mafia!==null)
                 {
-                    callback(mafia)
+                    callback(mafia);
                 }
                 else{
-                    callback(null)
+                    callback(null);
                 }
-    })  
+    });  
 }
 
 
@@ -73,7 +76,7 @@ module.exports.addUserToServer = function(serverName,user,callback){
                 }
                     
             });
-}
+};
 
 module.exports.addMessage = function(serverName,message,callback){
             
@@ -83,21 +86,26 @@ module.exports.addMessage = function(serverName,message,callback){
                     server.save(callback);
                 }
                 else{
+                     console.log("throws");
+                     callback(new Error('server not found'),null);
                 //throw error server not found//
-                    throw new Error('server not found');
+                  //  throw new Error('server not found');
                 }
-            })
-}
+            });
+};
 
 module.exports.getMessages = function(serverName,callback){
 
             findServer(serverName,function(server){
                 if(server){
-                    callback(server.messageList)
+                    console.log("GET MESSAGE Server " + server.messageList);
+                    callback(server.messageList == null ? null : server.messageList);
                 }
                 else{
+                    console.log("throws");
                 //throw error server not found//
-                    throw new Error('server not found');
+                    callback(null);
+                    //throw new Error('server not found');
                 }
-            })
-}
+            });
+};
