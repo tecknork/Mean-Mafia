@@ -26,7 +26,7 @@ gulp.task('test', function() {
 
 gulp.task('watch', function() {
   gulp.watch(['routes/*','models/*'], ['script']);
-  gulp.watch('test/*.js', ['test']);
+ // gulp.watch('test/*.js', ['test']);
 })
 
-gulp.task('default', ['test', 'script', 'watch']);
+gulp.task('default', [ 'script', 'watch']);
