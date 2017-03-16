@@ -4,7 +4,7 @@ var plumber = require('gulp-plumber');
 var mocha = require('gulp-mocha');
 var istanbul = require('gulp-istanbul');
 var gutil = require('gulp-util');
-
+var exit = require('gulp-exit');
 
 gulp.task('script', function() {
   return gulp
@@ -21,7 +21,8 @@ gulp.task('test', function() {
     .src('test/*.js',{ read: false })
     .pipe(mocha({ reporter: 'list' }))
     .pipe(istanbul.writeReports())
-    .on('error', gutil.log);
+    .on('error', gutil.log)
+    .pipe(exit());
 })
 
 gulp.task('watch', function() {

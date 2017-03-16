@@ -1,13 +1,13 @@
 before script: 
         -npm install; npm install -g gulp 
     
-script: gulp test
+script: npm test
 language: node_js
 env : 
     - PORT = 30000 
 node_js:
     - "5.1"
     - "4"
-    - "0.12"
+   # - "0.12"
 services:
   - mongodb
