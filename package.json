@@ -19,6 +19,7 @@
   "homepage": "https://github.com/tecknork/MeanSample#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "chai-http": "^3.0.0",
     "connect-flash": "*",
     "ejs": "^2.5.5",
     "express": "^4.14.0",
