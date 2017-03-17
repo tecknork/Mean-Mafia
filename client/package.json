@@ -49,8 +49,8 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~4.0.14",
     "rimraf": "^2.5.4",
-    "@types/node": "^6.0.46",
-    "@types/jasmine": "^2.5.36"
+      "@types/node": "^6.0.46",
+    "@types/jasmine": "2.5.36"
   },
   "repository": {}
 }
